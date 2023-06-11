@@ -1,0 +1,93 @@
+<?php
+/** */
+?>
+<?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $model=$objectManager->create('Sandeep\Crud\Model\Crud');
+    $datacollection=$model->getCollection()->addFieldToFilter('status','1');
+?>
+<?php if($datacollection->count() > 0): ?>
+    <div class="data table" id="crud-data-table">    
+        <?php foreach ($datacollection as $key => $data): ?>                                 
+            <span data-th="Actions" class="col actions">
+                <?php $id = ($data->getCrudId()) ? $data->getCrudId() : $data['crud_id']; ?>
+                <!-- <a href="#" id="<?php echo $id;?>" onClick="reply_click(this.id)" class="click-me" >
+                    <span><?php echo $data->getTitle(); ?></span> -->
+                    <!-- <span ><?php echo $data->getProductid(); ?></span> -->
+                <!-- </a>  -->
+                <a href="#" data-modal-id="header-modal-<?php echo $id;?>" class="click-header"><?php echo $data->getTitle(); ?></a>                                       
+            </span>
+            <?php if($datacollection->count() > 0): ?>
+                <div id="header-modal-<?php echo $id;?>" style="display:none;">       
+                   <!-- <span ><?php //echo $data->getProductid(); ?></span>  -->
+                     <?php 
+                       // $arr = print_r(explode(',',$data->getProductid()));                       
+
+                     ?>
+                     <?php
+                        $allproductid=explode(',',$data->getProductid());
+                        foreach($allproductid as $productid)
+                        { 
+                            $product_id = $productid; //Replace with your product ID
+                            $productimages = array();
+                            $objectmanager = \Magento\Framework\App\ObjectManager::getInstance();
+                            $product = $objectmanager ->create('Magento\Catalog\Model\Product')->load ($product_id);                            
+                            $product_status = $product->getStatus();
+                            if($product_status==1){
+
+                                $productimages = $product->getMediaGalleryImages();
+                                foreach($productimages as $productimage)
+                                    {   
+                                        echo "<img src = ".$productimage['url']. " class='pimage'/>";                                       
+                                    }                                    
+                                ?>  
+                                <a href="<?php echo $product->getProductUrl();?>">
+                                        <?php echo $product->getName(); ?> 
+                                </a>
+                                <?php                            
+                            }
+                        }
+                    ?>
+                    <span ><img src = <?php  echo $data->getImage();  ?>/></span>
+                </div>
+            <?php endif; ?> 
+        <?php endforeach; ?>    
+    </div>    
+<?php else: ?>
+    <!-- <h2>We couldn't find any records</h2> -->
+<?php endif; ?>
+
+<script>
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function(
+            $,
+            modal
+        ) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,                       
+                buttons: [{
+                    text: $.mage.__('Close'),
+                    class: '',
+                    click: function () {
+                        this.closeModal();
+                    }
+                }]
+            };
+
+            $(".click-header").on('click',function() {
+                // var dynamicTitle = $(this).html();
+                // options.title = dynamicTitle;
+                var modalId = $(this).attr('data-modal-id');
+                var popup = modal(options, $('#'+modalId));
+                $('#'+modalId).modal("openModal");
+            });
+
+        }
+    );
+</script>

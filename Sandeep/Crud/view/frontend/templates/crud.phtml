@@ -1,0 +1,62 @@
+<?php
+/** */
+
+
+?>
+<form class="" action="<?php echo $block->getBaseUrl().'crud/index/save'; ?>" id="sandeep-crud-form" method="post" enctype='multipart/form-data'  data-mage-init='{"validation": {}}'>
+    <fieldset class="fieldset">
+        <legend class="legend"><span>List of All Developer. <a href="<?php echo $block->getBaseUrl().'crud/index/list'; ?>"> (Visit List Page)</a></span></legend><br>
+        <legend class="legend">Fill personal Details.</legend><br>
+
+        <div class="field name">
+            <label class="label" for="fullname"><span>Full Name</span></label>
+            <div class="control">
+                <input name="fullname" id="fullname" title="Full Name" value="" class="input-text" type="text" data-validate="{required:true}">
+            </div>
+        </div> 
+        <div class="field email">
+            <label class="label" for="email"><span>Email</span></label>
+            <div class="control">
+                <input name="email" id="email" title="email" value="" class="input-text" type="text" data-validate="{required:true}">
+            </div>
+        </div> 
+        <div class="field telephone">
+            <label class="label" for="telephone"><span>Telephone</span></label>
+            <div class="control">
+                <input name="telephone" id="telephone" title="telephone" value="" class="input-text" type="text" data-validate="{required:true}">
+            </div>
+        </div>
+        <div class="field dob">
+            <label class="label" for="dob"><span>Date Of Birth</span></label>
+            <div class="control">
+                <input name="dob" id="dob" title="dob" value="" class="input-text" type="text" data-validate="{required:true}">
+            </div>
+        </div>
+        <div class="field image">
+            <label class="label" for="image"><span>Image</span></label>
+            <div class="control">
+                <input name="image" id="image" title="Image" value="" class="input-text" type="file">
+            </div>
+        </div>
+        <legend class="legend">Work Experience.</legend><br>
+        <div class="field experience">
+            <label class="label" for="experience"><spWork Experiencean>experience</span></label>
+            <div class="control">
+                <textarea name="experience" id="experience" title="experience" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+            </div>
+        </div>
+        <div class="field otherexperience">
+            <label class="label" for="otherexperience"><span>otherexperience</span></label>
+            <div class="control">
+                <textarea name="otherexperience" id="otherexperience" title="otherexperience" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" title="Submit" class="action submit primary">
+                <span>Submit</span>
+            </button>
+        </div>
+    </div>
+</form>

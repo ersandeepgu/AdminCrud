@@ -1,0 +1,42 @@
+<?php
+/** */
+?>
+<?php
+    $singleData = $block->getSingleData();
+?>
+<div>
+    <h3>Full Name</h3>
+    <p><?php echo $singleData->getFullname(); ?></p>   
+</div>
+<div>
+    <h3>Email</h3>
+    <p><?php echo $singleData->getEmail(); ?></p>
+</div>
+<div>
+    <h3>Telephone</h3>
+    <p><?php echo $singleData->getTelephone(); ?></p>
+</div>
+<div>
+    <h3>Dob</h3>
+    <p><?php echo $singleData->getDob(); ?></p>
+</div>
+<div>
+    <h3>Experience</h3>
+    <p><?php echo $this->_filterProvider->getPageFilter()->filter($singleData->getExperience()); ?></p>
+</div>
+<div>
+    <h3>Other Experience</h3>
+    <p><?php echo $this->_filterProvider->getPageFilter()->filter($singleData->getOtherexperience()); ?></p>
+</div>
+<div>
+	<h3>Image</h3>
+	<?php if($singleData->getImage()): ?>
+        <img width="400" height="300" src="<?php echo $block->getBaseUrl().'/media/'.$singleData->getImage(); ?>">
+    <?php else: ?>
+        <p>No Image</p>
+    <?php endif; ?>
+</div>
+<div>
+    <h3>CreatedAt Date</h3>
+    <p><?php echo $singleData->getCreatedAt(); ?></p>
+</div>

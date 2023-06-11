@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!--
+/** */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="sandeep_crud::core" title="Property Type" module="Sandeep_Crud" sortOrder="90" resource="Sandeep_Crud::sample"/>
+        <add id="sandeep_crud::test" title="Assign Products" module="Sandeep_Crud" sortOrder="10" parent="sandeep_crud::core" action="sandeep_crud/items/" resource="Sandeep_Crud::items"/>
+    </menu>
+</config>
